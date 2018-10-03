@@ -11,6 +11,8 @@
  * @requiredAssets img/system/Window_Battle
  * @requiredAssets img/system/Window_Status
  * @requiredAssets img/system/Window_Other
+ * 
+ * 
  */
 
 /*:ja
@@ -24,12 +26,22 @@
  * @requiredAssets img/system/Window_Other
  */
 
+ /*
+//_.AltWindowFrame = {};
+// var Parameters = PluginManager.parameters('Window_Status');
+*/
+//var Window_Status = String(params['Window_Status']);
+
+
  (function() {
 
     Window_Base.prototype.loadWindowskin = function() {
         this.windowskin = ImageManager.loadSystem('Window_Talk');
         this.windowskin = ImageManager.loadSystem('Window_Battle');
         this.windowskin = ImageManager.loadSystem('Window_Status');
+        this.windowskin = ImageManager.loadSystem('Window_Status_Item');
+        this.windowskin = ImageManager.loadSystem('Window_Status_Equip');
+        this.windowskin = ImageManager.loadSystem('Window_Quest');
         this.windowskin = ImageManager.loadSystem('Window_Other');
         this.windowskin = ImageManager.loadSystem('Window');
     };
@@ -57,7 +69,7 @@
     var _Scene_Item_Create = Scene_Item.prototype.create;
     Scene_Item.prototype.create = function() {
         _Scene_Item_Create.call(this);
-        var _image = ImageManager.loadSystem('Window_Status');
+        var _image = ImageManager.loadSystem('Window_Status_Item');
         this._categoryWindow._windowskin = _image;
         this._itemWindow._windowskin = _image;
         this._helpWindow._windowskin = _image;
@@ -89,7 +101,7 @@
     var _Scene_Equip_Create = Scene_Equip.prototype.create;
     Scene_Equip.prototype.create = function() {
         _Scene_Equip_Create.call(this);
-        var _image = ImageManager.loadSystem('Window_Status');
+        var _image = ImageManager.loadSystem('Window_Status_Equip');
         this._helpWindow._windowskin = _image;
         this._statusWindow._windowskin = _image;
         this._commandWindow._windowskin = _image;
@@ -102,6 +114,7 @@
         this._slotWindow._refreshAllParts();
         this._itemWindow._refreshAllParts();
     };
+
 
     var _Scene_Status_Create = Scene_Status.prototype.create;
     Scene_Status.prototype.create = function() {
